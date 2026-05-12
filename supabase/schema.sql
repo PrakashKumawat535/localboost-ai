@@ -1,0 +1,58 @@
+CREATE TABLE IF NOT EXISTS business_profiles (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  business_name VARCHAR(255) NOT NULL,
+  niche VARCHAR(255),
+  target_audience TEXT,
+  tone VARCHAR(100),
+  language VARCHAR(50),
+  brand_colors TEXT[],
+  logo_url VARCHAR(500),
+  phone VARCHAR(20),
+  address TEXT,
+  instagram_handle VARCHAR(100),
+  facebook_handle VARCHAR(100),
+  website_url VARCHAR(500),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS generated_posts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  prompt TEXT NOT NULL,
+  poster_url VARCHAR(500),
+  poster_title VARCHAR(255),
+  poster_subheading TEXT,
+  badge_text VARCHAR(100),
+  short_caption TEXT,
+  long_caption TEXT,
+  cta VARCHAR(255),
+  hashtags TEXT[],
+  font_color VARCHAR(50),
+  font_style VARCHAR(50),
+  text_position VARCHAR(50),
+  contact_position VARCHAR(50),
+  logo_position VARCHAR(50),
+  contact_style VARCHAR(50),
+  logo_background_style VARCHAR(50),
+  show_business_name_logo BOOLEAN DEFAULT true,
+  selected_theme VARCHAR(100),
+  selected_archetype VARCHAR(100),
+  price VARCHAR(50),
+  discount VARCHAR(50),
+  tagline TEXT,
+  offer_percentage VARCHAR(50),
+  headline_position VARCHAR(50),
+  features TEXT[],
+  platform VARCHAR(50) DEFAULT 'Instagram',
+  is_liked BOOLEAN DEFAULT false,
+  is_disliked BOOLEAN DEFAULT false,
+  style_tag VARCHAR(100),
+  layout_tag VARCHAR(100),
+  color_tag VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_generated_posts_user_id ON generated_posts(user_id);
+CREATE INDEX IF NOT EXISTS idx_business_profiles_user_id ON business_profiles(user_id);

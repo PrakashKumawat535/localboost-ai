@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-slate-900 antialiased bg-white selection:bg-brand-100 selection:text-brand-700;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+    font-family: "Outfit", sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.04)];
+  }
+
+  .premium-card {
+    @apply bg-white border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_12px_24px_-4px_rgba(0,0,0,0.04)] rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply bg-slate-900 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-slate-800 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-slate-700 border border-slate-200 px-5 py-2.5 rounded-lg font-medium hover:bg-slate-50 transition-all active:scale-[0.98] disabled:opacity-50 shadow-sm;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 transition-all outline-none text-slate-700 placeholder:text-slate-400;
+  }
+
+  .input-field:focus {
+    @apply ring-2 ring-brand-500/10 border-brand-500;
+  }
+}
